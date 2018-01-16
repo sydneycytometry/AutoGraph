@@ -1,44 +1,56 @@
-# AutoGraph v1
+# AutoGraph v1.0
 # Thomas Ashhurst
 # 2018-01-16
+# www.github.com/sydneycytometry/autograph
 
 
 ###################################################### 1. INSTALL AND-OR LOAD PACKAGES ###################################################### 
 
     ### 1.1. Install packages
-        install.packages("ggpubr")
-        install.packages("cowplot")
-        
+        if(!require('ggplot2')) {install.packages('ggplot2')}
+        if(!require('ggpubr')) {install.packages('ggpubr')}
+        if(!require('scales')) {install.packages('scales')}
+        if(!require('devtools')) {install.packages('devtools')}
+
         library(ggplot2)
         library(ggpubr)
         library(scales)
         library(devtools)
-        #library(cowplot)
-        
-        detach("package:cowplot", unload=TRUE)
-        
-        #devtools::install_github("baptiste/egg")
-        #library(egg)
+
+        #if(!require('cowplot')) {install.packages('cowplot')} # not required, development only
+        #devtools::install_github("baptiste/egg") # not required, development only
+        #library(egg) # not required, development only
 
     ### 1.2 Working directory
+        
+        ## Option A: set working directory to the folder containing this script
         dirname(rstudioapi::getActiveDocumentContext()$path)            # Finds the directory where this script is located
         setwd(dirname(rstudioapi::getActiveDocumentContext()$path))     # Sets the working directory to where the script is located
         getwd()
         PrimaryDirectory <- getwd()
         PrimaryDirectory
     
+        ## Option B: set working directory manually
         #setwd("/Users/Tom/Desktop/auto_test_2/")
         #PrimaryDirectory <- getwd()
         #PrimaryDirectory
         
+        ## Create a list of .csv files
         list.files(path = PrimaryDirectory, ".csv")
 
 ###################################################### 2. SETUP DATA ######################################################     
     
     ### 2.1. Setup data
         
-        # data <- iris # use for TESTING
-        data <- read.csv("test_data.csv")
+        
+        ## OPTION A: read .csv file
+        # data <- read.csv("test_data.csv")
+        
+        ## OPTION B: use iris dataset for testing
+        data <- iris # use for TESTING
+        
+
+        # Set up as data frame
         data <- as.data.frame(data)
         head(data)
         
@@ -71,11 +83,11 @@
         # COMING SOON: run gaussian assessment -- help decide test
         
         # Comparing overall variance (ANOVA, Kruskal-Wallis etc)
-        Run_variance_assessment <- 1      
+            # Run_variance_assessment <- 1 # Coming soon
         Variance_test <- "kruskal.test"   # can be "kruskal.test" (non-parametric) or "anova" (parametric)
         
         # Pair-wise comparisons (T-test, Willcox test etc)
-        Run_pairwise_assessment <- 1
+            # Run_pairwise_assessment <- 1  # Coming soon
         Pairwise_test <- "wilcox.test"  # default is "wilcox.test" (non-parametric), can be "t.test" (parametric)
         
         # IF performing pair-wise comparisons, specificy which groups you want to compare statistically -- not all columns have to be compared
@@ -168,8 +180,8 @@
                   scale_y_continuous(labels = scales::scientific, limits = c(0, max_y_value_p40)) +
                   
               ## COLOUR CONTROL
-              scale_fill_manual(values=Colour_Order_Fill) + # for circle fills
-              scale_color_manual(values=Colour_Order_Lines) + # for circle outlines # (values=c("Black", "Red", "Blue"))
+                  scale_fill_manual(values=Colour_Order_Fill) + # for circle fills
+                  scale_color_manual(values=Colour_Order_Lines) + # for circle outlines # (values=c("Black", "Red", "Blue"))
               
                         # OTHER OPTIONS
                         #scale_fill_brewer(palette="Dark2") +
@@ -181,15 +193,15 @@
                   theme_classic(base_size = 30) + # can be theme_classic(), theme_bw()
               
               ## THEMES
-              theme(legend.position = "none", # can be "left" "right" "top" "bottom" "none
-                    axis.text.x = element_text(colour="black",size=18,angle=45,hjust=1,vjust=1,face="bold"),
-                    axis.text.y = element_text(colour="black",size=18,angle=0,hjust=1,vjust=0,face="bold"),  
-                    axis.title.x = element_text(colour="black",size=18,angle=0,hjust=.5,vjust=0,face="bold"),
-                    axis.title.y = element_text(colour="black",size=18,angle=90,hjust=.5,vjust=1,face="bold"),
-                    plot.title = element_text(lineheight=.8, face="bold", hjust = 0, size = 24), # hjust = 0.5 to centre
-                    axis.line = element_line(colour = 'black', size = 1),
-                    axis.ticks = element_line(colour = "black", size = 1)
-                    )
+                  theme(legend.position = "none", # can be "left" "right" "top" "bottom" "none
+                        axis.text.x = element_text(colour="black",size=18,angle=45,hjust=1,vjust=1,face="bold"),
+                        axis.text.y = element_text(colour="black",size=18,angle=0,hjust=1,vjust=0,face="bold"),  
+                        axis.title.x = element_text(colour="black",size=18,angle=0,hjust=.5,vjust=0,face="bold"),
+                        axis.title.y = element_text(colour="black",size=18,angle=90,hjust=.5,vjust=1,face="bold"),
+                        plot.title = element_text(lineheight=.8, face="bold", hjust = 0, size = 24), # hjust = 0.5 to centre
+                        axis.line = element_line(colour = 'black', size = 1),
+                        axis.ticks = element_line(colour = "black", size = 1)
+                        )
             
             ### End construction of 'p'
             
