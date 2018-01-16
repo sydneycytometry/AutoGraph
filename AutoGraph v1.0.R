@@ -11,11 +11,13 @@
         if(!require('ggpubr')) {install.packages('ggpubr')}
         if(!require('scales')) {install.packages('scales')}
         if(!require('devtools')) {install.packages('devtools')}
+        if(!require('rstudioapi')) {install.packages('rstudioapi')}
 
         library(ggplot2)
         library(ggpubr)
         library(scales)
         library(devtools)
+        library(rstudioapi)
 
         #if(!require('cowplot')) {install.packages('cowplot')} # not required, development only
         #devtools::install_github("baptiste/egg") # not required, development only
