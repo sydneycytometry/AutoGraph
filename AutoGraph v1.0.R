@@ -65,7 +65,7 @@
         
         Group_Order <- c("setosa", "versicolor", "virginica") # left to right
         Colour_Order_Fill <- c("Black", "red", "#377eb8") # number of distinct columns must be the same as the number of groups
-        Colour_Order_Lines <- c("Black", "red", "#377eb8")
+        Colour_Order_Lines <- c("Black", "Black", "Black") # "Black" will create an outline of each point. Can change to match the colours on the line above.
         
         # Create string of columns to analyse -- REMOVE the column that represents the groups (the column that defines the X axis)
         ColNames <- names(data)
@@ -78,7 +78,7 @@
         X_axis_label <- " " # Leave empty for no axis label
         Y_axis_label <- "Cells per femur" # Y axis labl
     
-        Dot.Size <- 7   # Default 7, large dot
+        Dot.Size <- 5   # 5 = mid size, 7 = large dot
         
     ### 2.2. Setup statistics
         
