@@ -106,8 +106,8 @@
         
     ### 3.1. Set output directory
         setwd(PrimaryDirectory)
-        dir.create("Output", showWarnings = FALSE)
-        setwd("Output")
+        dir.create("Output_AutoGraph", showWarnings = FALSE)
+        setwd("Output_AutoGraph")
         OutputDirectory <- getwd()
         OutputDirectory
     
