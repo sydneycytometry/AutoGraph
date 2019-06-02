@@ -1,5 +1,5 @@
 # AutoGraph
-A looped script to create a series of group comparison bar graphs or dot plots
+A looped script to create a series of group comparison bar graphs or dot plots.
 
 ## Getting started
 
